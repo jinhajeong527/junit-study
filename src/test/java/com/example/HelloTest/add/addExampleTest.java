@@ -13,4 +13,12 @@ public class addExampleTest {
         int expectedResult = 30;
         assertEquals(expectedResult , actualResult);
     }
+
+    @Test
+    public void calculateSumTest() {
+        AddExample addExample = new AddExample();
+        int actualResult = addExample.calculationSum(new int[] {1, 2, 3});
+        int expectedResult = 6;
+        assertEquals(expectedResult, actualResult);
+    }
 }
