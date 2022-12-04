@@ -1,4 +1,4 @@
-package com.example.HelloTest.stub;
+package stub;
 
 import com.example.HelloTest.CalculateService;
 

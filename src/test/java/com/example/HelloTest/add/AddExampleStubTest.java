@@ -1,8 +1,8 @@
 package com.example.HelloTest.add;
 
-import com.example.HelloTest.stub.CalculateServiceStub;
-import com.example.HelloTest.stub.CalculateServiceStubEmpty;
-import com.example.HelloTest.stub.CalculateServiceStubSingle;
+import stub.CalculateServiceStub;
+import stub.CalculateServiceStubEmpty;
+import stub.CalculateServiceStubSingle;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
