@@ -2,7 +2,8 @@ package com.example.HelloTest.mock;
 
 import com.example.HelloTest.CalculateService;
 import com.example.HelloTest.add.AddExample;
-import org.junit.Before;
+import org.junit.Before; // Junit4
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,7 +27,7 @@ public class AddExampleMockTest {
     @Mock
     CalculateService calculateService; //= mock(CalculateService.class);
 
-    @Before // 테스트 케이스 실행 전에 수행된다.
+    @BeforeEach // 테스트 케이스 실행 전에 수행된다.
     public void before() {
         addExample.setCalculateService(calculateService);
     }
