@@ -37,4 +37,20 @@ public class HelloWorldTest {
         assertEquals("hello world", result.getResponse().getContentAsString());
     }
 
+    @Test
+    public void getStudnetTest() throws Exception {
+        // RequestBuilder의 사용
+        RequestBuilder requestBuilder =
+                MockMvcRequestBuilders.get("/Sample-Student")
+                        .accept(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder)
+                .andExpect(MockMvcResultMatchers.status().isOk()) //200
+                .andExpect(MockMvcResultMatchers.content().string("{\"id\":100,\"stdName\":\"Peter\",\"stdAddress\":\"England\"}"))
+                .andReturn();
+
+        // 컨텐츠 타입을 json으로 지정했기 때문에 getContentAsString() 필요하다.
+        // assertEquals("hello world", result.getResponse().getContentAsString());
+    }
+
 }
