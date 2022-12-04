@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -71,6 +73,28 @@ public class HelloWorldTest {
                 .andExpect(MockMvcResultMatchers.status().isOk()) //200
                 .andExpect(MockMvcResultMatchers.content().string("{\"id\":100,\"stdName\":\"Seinivas\",\"stdAddress\":\"Hyderavad\"}"))
                 .andReturn();
+
+        // 컨텐츠 타입을 json으로 지정했기 때문에 getContentAsString() 필요하다.
+        // assertEquals("hello world", result.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void getStudentBusinessDetailsFromReposTest() throws Exception {
+        when(studentBusinessService.getAllStudents())
+                .thenReturn(Arrays.asList(new Student(10001, "jinha", "seoul"),
+                                          new Student(10002, "jooyeon", "seoul"),
+                                          new Student(10003, "eunyoung", "chungcheongdo")
+                ));
+        RequestBuilder requestBuilder =
+                MockMvcRequestBuilders.get("/allStudent")
+                        .accept(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder)
+                .andExpect(MockMvcResultMatchers.status().isOk()) //200
+                .andExpect(MockMvcResultMatchers
+                        .content()
+                        .json("[{id:10001,stdName:jinha,stdAddress:seoul},{id:10002,stdName:jooyeon,stdAddress:seoul},{id:10003,stdName:eunyoung,stdAddress:chungcheongdo}]"))
+                        .andReturn();
 
         // 컨텐츠 타입을 json으로 지정했기 때문에 getContentAsString() 필요하다.
         // assertEquals("hello world", result.getResponse().getContentAsString());
